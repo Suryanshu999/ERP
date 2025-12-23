@@ -1,0 +1,48 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime files
+pids
+*.pid
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# Build outputs
+dist/
+build/
+frontend/dist/
+frontend/build/
+
+# Frontend/backend node_modules (explicit)
+frontend/node_modules/
+backend/node_modules/
+
+# Uploaded user files / generated content
+uploads/
+backend/uploads/
+frontend/uploads/
+
+# Misc
+*.tgz
+*.zip
+
+# Optional: ignore lockfiles if you prefer
+# package-lock.json
