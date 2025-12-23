@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { formatDateISOToDDMMYYYY } from '../utils/dateFormat';
+import { API_ENDPOINTS } from "../utils/apiConfig";
 
 const Applications = () => {
   const [apps, setApps] = useState([]);
@@ -10,7 +11,7 @@ const Applications = () => {
   const fetchApplications = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:5000/api/applications');
+      const res = await fetch(API_ENDPOINTS.APPLICATIONS);
       const data = await res.json();
       setApps(data || []);
     } catch (err) {
