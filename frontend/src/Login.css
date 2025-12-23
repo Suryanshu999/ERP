@@ -1,0 +1,83 @@
+/* Background and centering */
+.login-container {
+  display: flex;
+  align-items: flex-start; /* align to top so card sits higher */
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 6vh; /* small top spacing so it doesn't touch the very top */
+  background: #f4f7fa;
+  font-family: Arial, sans-serif;
+}
+
+/* Box styling */
+.login-box {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
+
+/* Title */
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2a4d8f;
+  margin-bottom: 20px;
+}
+
+/* Input group */
+.input-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.ok-btn {
+  background: #2a78d4;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ok-btn:hover {
+  background: #1c5fab;
+}
+
+.cancel-btn {
+  background: #777;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cancel-btn:hover {
+  background: #555;
+}

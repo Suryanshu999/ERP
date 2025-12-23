@@ -1,0 +1,186 @@
+:root {
+  --nav-bg: #4cc3f7;
+  --nav-text: #ffffff;
+}
+
+/* Main Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Left: logo + brand */
+.nav-left .logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.logo {
+  height: 48px;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+}
+.brand {
+  font-size: 1.1rem;
+  margin: 0;
+  letter-spacing: 0.6px;
+}
+
+/* Toggle button for mobile */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--nav-text);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+
+/* Right: nav links */
+.nav-right {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  font-size: 1rem;
+}
+.nav-link {
+  color: var(--nav-text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: larger;
+}
+.nav-link:hover,
+.nav-link:focus {
+  background: rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+}
+
+/* Admin dropdown area */
+.nav-admin {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nav-admin-btn {
+  background: transparent;
+  color: var(--nav-text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+.nav-admin-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Dropdown menu */
+.nav-admin-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 999;
+  animation: dropdownFade 0.2s ease-out;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Items inside dropdown */
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  background: white;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+.dropdown-item:hover {
+  background: #f0f0f0;
+}
+
+/* Admin button content */
+.nav-admin-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 8px;
+  display: inline-block;
+  fill: currentColor;
+}
+.nav-admin-label {
+  vertical-align: middle;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-right {
+    position: absolute;
+    top: 64px;
+    right: 12px;
+    background: var(--nav-bg);
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    display: none;
+    min-width: 160px;
+    z-index: 1200;
+  }
+  .nav-right.open {
+    display: flex;
+  }
+  .brand {
+    font-size: 1rem;
+  }
+  .nav-admin-label {
+    display: none;
+  }
+  .nav-admin-icon {
+    margin-right: 0;
+  }
+  .nav-admin-btn {
+    padding: 6px;
+  }
+}
+
+/* Focus outline for accessibility */
+.nav-link:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}

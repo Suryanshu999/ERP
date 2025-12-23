@@ -1,0 +1,175 @@
+/* Global / layout */
+* { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #f8f9fc; }
+
+/* Main container */
+.admin-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 600px;
+}
+
+.admin-header h2 {
+  font-size: 2.5rem;
+  color: #1e293b;
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+
+.admin-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Grid */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card */
+.admin-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+/* Icon wrapper & badge */
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background-color: #eff6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  color: #2563eb;
+}
+
+.icon-wrapper svg {
+  width: 36px;
+  height: 36px;
+  stroke-width: 1.8;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #e0e7ff;
+  color: #312e81;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 2px solid white;
+}
+
+/* Card typography */
+.card-title {
+  color: #0f172a;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.card-desc {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Chatbot toggle button (small round icon) */
+.chatbot-toggle {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg,#2a78d4,#1c5fab);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(33, 100, 200, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+/* Chatbot panel */
+.chatbot-panel {
+  position: fixed;
+  right: 28px;
+  bottom: 100px;
+  width: 380px;
+  max-height: 70vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(20,40,80,0.20);
+  z-index: 1400;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.chatbot-panel-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 10px;
+  border-bottom:1px solid #eef4fb;
+  background:#2563eb;
+  color:#fff;
+}
+
+.chatbot-panel-body {
+  padding:10px;
+  overflow:auto;
+  background: #fbfdff;
+}
+
+.chatbot-close {
+  border:none;
+  background:transparent;
+  font-size:16px;
+  cursor:pointer;
+  color: #fff;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .admin-header h2 { font-size: 1.75rem; }
+  .admin-card { padding: 28px 18px; }
+  .chatbot-panel { right: 14px; left: 14px; width: auto; }
+  .chatbot-toggle { right: 16px; bottom: 16px; width: 48px; height: 48px; font-size: 20px; }
+  .chatbot-panel { right: 12px; bottom: 80px; width: calc(100% - 24px); max-height: 60vh; }
+}

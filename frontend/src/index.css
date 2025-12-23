@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- App-wide utilities & animations --- */
+:root{
+	--accent:#2a78d4;
+	--bg:#f6f8fb;
+	--card:#ffffff;
+	--muted:#7a7a7a;
+}
+
+/* Cinematic motion tokens */
+:root{
+	--motion-short: 240ms;
+	--motion-base: 480ms;
+	--motion-long: 980ms;
+	--motion-xl: 1400ms;
+	--cinematic-ease: cubic-bezier(.18,.95,.22,1);
+	--cinematic-shadow: 0 44px 112px rgba(12,18,32,0.16);
+}
+
+html,body,#root{height:100%}
+body{background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;}
+
+.container{max-width:1100px;margin:0 auto;padding:20px}
+
+/* card */
+.card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 12px 36px rgba(16,20,36,0.07);transition:transform var(--motion-base) var(--cinematic-ease),box-shadow var(--motion-base) var(--cinematic-ease),filter var(--motion-base) var(--cinematic-ease);border:1px solid rgba(15,25,40,0.04)}
+.card:hover{transform:translateY(-18px) scale(1.014);box-shadow:var(--cinematic-shadow);filter:blur(0)}
+
+/* remove underlines for links inside cards but keep normal link behavior elsewhere */
+.card a, .admin-card a { text-decoration: none; color: inherit; }
+.card a:hover, .admin-card a:hover { text-decoration: none; }
+
+/* card header */
+.card h3{margin:0 0 8px 0;color:var(--accent)}
+.card p{margin:0;color:var(--muted)}
+
+/* admin-card sits on top of .card styles and aligns content */
+.admin-card{display:flex;flex-direction:column;justify-content:center;min-height:140px;padding:22px;border-left:4px solid rgba(42,120,212,0.08)}
+.admin-card h3{font-size:18px}
+.admin-card p{font-size:14px}
+
+/* buttons */
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;transition:transform var(--motion-short) var(--cinematic-ease),box-shadow var(--motion-short) var(--cinematic-ease),filter var(--motion-short) var(--cinematic-ease);will-change:transform,filter}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
+.btn:active{transform:translateY(1px)}
+
+/* subtle entrance animations */
+.fade-in{animation:cinematicFade var(--motion-long) var(--cinematic-ease) both}
+.slide-up{animation:cinematicRise var(--motion-xl) var(--cinematic-ease) both}
+.stagger > *{opacity:0;transform:translateY(22px) scale(.992);animation:cinematicStagger var(--motion-xl) var(--cinematic-ease) both}
+.stagger > *:nth-child(1){animation-delay:.03s}
+.stagger > *:nth-child(2){animation-delay:.07s}
+.stagger > *:nth-child(3){animation-delay:.11s}
+.stagger > *:nth-child(4){animation-delay:.14s}
+
+@keyframes cinematicFade{from{opacity:0;filter:blur(10px) saturate(.92);transform:translateY(12px) scale(.996)}to{opacity:1;filter:blur(0) saturate(1);transform:none}}
+@keyframes cinematicRise{from{opacity:0;transform:translateY(28px) scale(.99) perspective(900px) rotateX(1.5deg);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes cinematicStagger{from{opacity:0;transform:translateY(28px) scale(.988) perspective(900px) rotateX(2.2deg);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+
+/* table tweaks */
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border:1px solid #eef2f6}
+
+/* small helpers */
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+/* Page-level transition wrapper */
+.page-wrapper{opacity:0;transform:translateY(18px) scale(.996);transition:opacity calc(var(--motion-xl) + 120ms) var(--cinematic-ease),transform calc(var(--motion-xl) + 120ms) var(--cinematic-ease),filter calc(var(--motion-xl) + 120ms) var(--cinematic-ease)}
+.page-wrapper.enter{opacity:1;transform:none;filter:none}
+
+/* --- Additional professional transitions applied globally --- */
+/* Navbar */
+.navbar{transition:background-color .28s ease,box-shadow .28s ease,transform .28s ease}
+ .nav-right .nav-link{transition:color var(--motion-short) var(--cinematic-ease),transform var(--motion-short) var(--cinematic-ease),text-shadow var(--motion-short) var(--cinematic-ease)}
+ .nav-right .nav-link:hover{transform:translateY(-8px) scale(1.03);color:var(--accent);text-shadow:0 6px 18px rgba(42,120,212,0.08)}
+
+/* Dropdown / admin menu */
+.nav-admin-menu{transition:opacity var(--motion-base) var(--cinematic-ease),transform var(--motion-base) var(--cinematic-ease);will-change:opacity,transform}
+.nav-admin-menu.card{opacity:0;transform:translateY(-16px) scale(.996)}
+.nav-admin-menu.card[role="menu"], .nav-admin-menu.card:focus-within{opacity:1;transform:none}
+
+/* Buttons — subtle lift + focus ring */
+.btn{will-change:transform,box-shadow}
+.btn:hover{transform:translateY(-12px) scale(1.04);box-shadow:0 34px 88px rgba(12,16,30,0.18);filter:brightness(1.03)}
+.btn:focus{outline:2px solid rgba(42,120,212,0.16);outline-offset:6px}
+
+/* Inputs */
+input, textarea, select{transition:box-shadow var(--motion-short) var(--cinematic-ease), border-color var(--motion-short) var(--cinematic-ease), transform var(--motion-short) var(--cinematic-ease)}
+input:focus, textarea:focus, select:focus{box-shadow:0 16px 46px rgba(42,120,212,0.14);border-color:var(--accent);transform:translateY(-4px)}
+
+/* Modals */
+.modal-overlay{opacity:0;transition:opacity var(--motion-base) var(--cinematic-ease)}
+.modal-overlay .modal{transform:translateY(28px) scale(.988);transition:transform var(--motion-long) var(--cinematic-ease),opacity var(--motion-base) var(--cinematic-ease),filter var(--motion-long) var(--cinematic-ease)}
+.modal-overlay[open], .modal-overlay:target{opacity:1}
+.modal-overlay[open] .modal, .modal-overlay:target .modal{transform:none;opacity:1;filter:none}
+
+/* Tables — row hover highlight */
+tbody tr{transition:background-color var(--motion-short) var(--cinematic-ease),transform var(--motion-short) var(--cinematic-ease),box-shadow var(--motion-short) var(--cinematic-ease)}
+tbody tr:hover{background-color:rgba(42,120,212,0.06);transform:translateY(-12px);box-shadow:0 34px 76px rgba(12,18,32,0.08)}
+
+/* File/link previews */
+.btn-ghost, a.btn-ghost{transition:color .16s ease, background-color .16s ease, border-color .16s ease}
+
+/* Salary list items and other lists */
+.salary-list li, .card > ul li, .salary-list ul li, .card .card-item{transition:transform var(--motion-base) var(--cinematic-ease),box-shadow var(--motion-base) var(--cinematic-ease),background-color var(--motion-base) var(--cinematic-ease)}
+.salary-list li:hover, .card > ul li:hover, .card .card-item:hover{transform:translateY(-18px) scale(1.02);box-shadow:0 44px 112px rgba(12,18,32,0.12)}
+
+/* small UI niceties */
+.fade-in{opacity:0;animation:cinematicFade var(--motion-long) var(--cinematic-ease) .06s both}
+.slide-up{opacity:0;animation:cinematicRise var(--motion-xl) var(--cinematic-ease) .02s both}
+
+/* Navbar animation toggle button removed - styles left out intentionally */
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; animation: none !important }
+}
+
+/* Generic class added by PageWrapper to stagger/animate common UI nodes */
+.cinematic-staggered{opacity:0;animation:cinematicStagger var(--motion-xl) var(--cinematic-ease) both}
+
+/* Animations active globally */
+.page-wrapper.enter{opacity:1;transform:none}
+.cinematic-staggered{opacity:0;animation:cinematicStagger var(--motion-xl) var(--cinematic-ease) both}
+.fade-in{animation:cinematicFade var(--motion-long) var(--cinematic-ease) both}
+.slide-up{animation:cinematicRise var(--motion-xl) var(--cinematic-ease) both}
+
+
