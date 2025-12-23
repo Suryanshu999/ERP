@@ -22,7 +22,25 @@ import PDFDocument from 'pdfkit'
 dotenv.config()
 
 const app = express()
-app.use(cors())
+
+// CORS configuration for Render deployment
+const allowedOrigins = process.env.CORS_ORIGIN 
+  ? process.env.CORS_ORIGIN.split(',').map(o => o.trim())
+  : ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5000']
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true)
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}))
 app.use(express.json())
 
 const __filename = fileURLToPath(import.meta.url)
@@ -553,6 +571,9 @@ app.put('/api/employees/:id', async (req, res) => {
   }
 })
 
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`)
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`)
+  if (!dbConnected) {
+    console.warn('⚠️  MongoDB not connected — running with in-memory sample data')
+  }
 })
