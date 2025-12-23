@@ -1,6 +1,7 @@
 // ✅ Enquiry.js — User Enquiry Form
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../utils/apiConfig";
 
 function Enquiry() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function Enquiry() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/enquiries", {
+      const response = await fetch(API_ENDPOINTS.ENQUIRIES, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
